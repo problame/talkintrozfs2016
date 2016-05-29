@@ -122,7 +122,7 @@
 \begin{frame}{Block-Pointers}
 	\begin{figure}
 	\centering
-	\includegraphics[height=0.75\textheight]{assets/on_disk/block_pointer}
+	\includegraphics[height=0.75\textheight]{assets/contrib/mckusick/block_pointer}
 	\caption{ZFS Block Pointer. Source \cite{introimplzfs}}
 	\end{figure}
 \end{frame}
@@ -132,7 +132,7 @@
 \begin{frame}{Tree Structure}
 	\begin{figure}
 	\centering
-	\includegraphics[width=0.6\linewidth]{assets/on_disk/tree_structure}
+	\includegraphics[width=0.6\linewidth]{assets/contrib/zfs2003/tree_structure}
 	\caption{Tree Structure. Source \cite{zfs2003}}
 	\end{figure}
 \end{frame}
@@ -142,7 +142,7 @@
 \begin{frame}{Block-Level Checksumming}
 	\begin{figure}
 		\centering
-		\includegraphics[height=0.75\textheight]{assets/on_disk/block_pointer_checksum_highlighted}
+		\includegraphics[height=0.75\textheight]{assets/contrib/mckusick/block_pointer_checksum_highlighted}
 		\caption{ZFS Block Pointer. Source \cite{introimplzfs}}
 	\end{figure}
 \end{frame}
@@ -163,11 +163,11 @@
 	\begin{column}{0.6\textwidth}
 		\begin{figure}
 		\centering
-		\only<1>{\includegraphics[width=\linewidth]{assets/on_disk/cow/begin}}
-		\only<2-3>{\includegraphics[width=\linewidth]{assets/on_disk/cow/data_block}}
-		\only<4>{\includegraphics[width=\linewidth]{assets/on_disk/cow/first_indirect}}
-		\only<5>{\includegraphics[width=\linewidth]{assets/on_disk/cow/second_indirect}}
-		\only<6>{\includegraphics[width=\linewidth]{assets/on_disk/cow/uberblock}}
+		\only<1>{\includegraphics[width=\linewidth]{assets/contrib/zfs2003/cow/begin}}
+		\only<2-3>{\includegraphics[width=\linewidth]{assets/contrib/zfs2003/cow/data_block}}
+		\only<4>{\includegraphics[width=\linewidth]{assets/contrib/zfs2003/cow/first_indirect}}
+		\only<5>{\includegraphics[width=\linewidth]{assets/contrib/zfs2003/cow/second_indirect}}
+		\only<6>{\includegraphics[width=\linewidth]{assets/contrib/zfs2003/cow/uberblock}}
 		\caption{ZFS Copy-on-Write. Source \cite{zfs2003}}
 	\end{figure}
 	\end{column}
@@ -324,7 +324,7 @@ void dmu_prealloc(objset_t *os, uint64_t object,
 	\pagebreak
 	\begin{figure}
 	\centering
-	\includegraphics[height=0.75\textheight]{assets/on_disk/detailed_with_dsl_structures}
+	\includegraphics[height=0.75\textheight]{assets/contrib/mckusick/detailed_with_dsl_structures}
 	\caption{On-Disk Structures, including MOS. Source \cite{introimplzfs}}
 	\end{figure}
 \end{frame}
