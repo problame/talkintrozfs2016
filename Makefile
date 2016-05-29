@@ -31,6 +31,6 @@ svgs := $(wildcard assets/*.svg) $(wildcard assets/on_disk/*.svg) $(wildcard ass
 
 pdfassets: $(svgs:%.svg=%.pdf)
 %.pdf : %.svg
-	rsvg-convert -f pdf -o $*.pdf $*.svg
+	inkscape -A $*.pdf $*.svg
 
 
