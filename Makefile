@@ -2,13 +2,11 @@ LATEX = xelatex -shell-escape -synctex=1 -interaction nonstopmode -file-line-err
 BIBTEX = bibtex
 SVG2PDF = rsvg-convert -f pdf -o
 
-ASSETS = 
-
-.PHONY: all clean
+.PHONY: all clean pdfassets 
 
 all: talk.pdf
 
-talk.pdf: $(ASSETS) | talk.tex.firstlatexrun.aux talk.bbl talk.tex.secondrun.aux talk.tex
+talk.pdf: pdfassets | talk.tex.firstlatexrun.aux talk.bbl talk.tex.secondrun.aux talk.tex
 	$(LATEX) talk
 
 talk.tex.firstlatexrun.aux:
@@ -24,3 +22,15 @@ clean:
 	for i in `git ls-files -ico -X .gitignore`; do \
 	       	rm "$$i"; \
 	done
+	for i in `find assets -name '*.pdf'`; do \
+		rm $$i; \
+	done
+# SVG to PDF
+
+svgs := $(wildcard assets/*.svg) $(wildcard assets/on_disk/*.svg) $(wildcard assets/on_disk/cow/*.svg)
+
+pdfassets: $(svgs:%.svg=%.pdf)
+%.pdf : %.svg
+	rsvg-convert -f pdf -o $*.pdf $*.svg
+
+

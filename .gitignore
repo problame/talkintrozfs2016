@@ -1,5 +1,5 @@
 /talk.pdf
-
+assets/**.pdf
 _minted-talk/
 *.nav
 *.snm
