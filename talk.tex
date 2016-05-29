@@ -1,0 +1,64 @@
+\documentclass[aspectratio=1610]{beamer}
+\usecolortheme{beaver}
+\usepackage{graphicx}
+\usepackage{minted}
+\usepackage{varwidth}
+\usepackage{tikz}
+\usepackage{tikzscale}
+\usepackage{color}
+\usepackage{url}
+\definecolor{carnelian}{rgb}{0.7, 0.11, 0.11}
+\usetikzlibrary{trees,shapes,positioning,arrows,fit}
+\usepackage{fontspec}
+\newfontface{\unicodefont}{Linux Biolinum}
+\newfontface{\altunicodefont}{Noto Sans}
+\usepackage{hyperref}
+\begin{document}
+\title{An Introduction to ZFS}
+\subtitle{A Solid Foundation for Your Data}
+\author{Christian Schwarz}
+\date{GPN16, 28.05.2016}
+\titlegraphic{\includegraphics[width=80pt]{assets/openzfs_logo.pdf}}
+\maketitle
+%
+%\begin{frame}
+%	\tableofcontents
+%\end{frame}
+
+\section{Introduction}
+\include{introduction}
+
+\section{Design}
+\include{overview}
+
+\section{Implementation}
+\include{implementation}
+
+\section{ZFS in Action}
+\begin{frame}{ZFS in Action}
+	\begin{center}
+		\Huge ZFS in Action
+	\end{center}
+\end{frame}
+%\include{cli}
+
+\section{Availibility}
+\include{availibility}
+
+\section{Workshop}
+\begin{frame}{Workshop}
+	\centering
+	\huge
+	Workshop \textit{ZFS for Beginners} \\
+	Sat, 28.05.2016, \alert{18:00} \\
+	Kleiner Workshopraum
+\end{frame}
+
+\section{Credits \& References}
+\begin{frame}[allowframebreaks]{Credits \& References}
+	\nocite{*}
+	\bibliographystyle{ieeetr}
+	\bibliography{bibliography}
+\end{frame}
+
+\end{document}

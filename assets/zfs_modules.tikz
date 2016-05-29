@@ -1,0 +1,75 @@
+% An alternative to this picture is
+% Figure 10.2, McKusick, M. K., Design and Implementation of the FreeBSD Operating System, 2nd Edition
+% ISBN: 978-0-321-96897-5
+
+\pgfdeclarelayer{zfs_layers}
+\pgfdeclarelayer{zfs_modules}
+\pgfsetlayers{zfs_layers,zfs_modules,main}
+\begin{tikzpicture}[
+every node/.style={},
+othermodule/.style={rectangle, draw},
+zfsmodule/.style={rectangle, draw},
+uses/.style={-triangle 60},
+zfslayer/.style={thick,dashed,draw=gray},
+zfslayerdescription/.style={}
+]
+
+\begin{pgfonlayer}{zfs_modules}
+
+\node [othermodule] at (0,0) (drv) {Kernel Device Driver};
+\node [zfsmodule] at (0, 1) (vdev) {VDEV};
+\node [zfsmodule] at (0, 2) (zio) {ZIO};
+\node [zfsmodule, right=of zio] (l2arc) {L2ARC};
+\node [zfsmodule] at (0, 3) (arc) {ARC};
+\node [zfsmodule] at (0, 4) (dmu) {DMU};
+\node [zfsmodule] at (5, 4) (dsl) {DSL};
+\node [zfsmodule] at (0, 5) (zpl) {ZPL};
+\node [zfsmodule, right=of zpl] (zap) {ZAP};
+\node [zfsmodule, left=of dmu] (zil) {ZIL};
+\node [zfsmodule] at (0, 6) (vfs) {VFS};
+\node [othermodule] at (0, 7) (app) {\texttt{read}(3) / \texttt{write}(3)};
+\node [zfsmodule, left=2 of zpl] (zvol) {ZVOL};
+\node [othermodule, left=of app] (devzvol) {\texttt{/dev/zvol/...}};
+\node [othermodule] at (5, 7) (zfsutils) {\texttt{zfs/zpool}8};
+\node [othermodule] at (5, 6) (devzfs) {\texttt{/dev/zfs}};
+\draw [uses] (app) -> (vfs);
+\draw [uses] (vfs) -> (zpl);
+\draw [uses] (zpl) -> (dmu);
+\draw [uses] (zpl) -> (zil);
+\draw [uses] (zpl) -> (zap);
+\draw [uses] (zil) -> (zio);
+\draw [uses] (zap) -> (dmu);
+\draw [uses] (dmu) -> (arc);
+\draw [uses] (arc) -> (zio);
+\draw [uses] (arc) -> (l2arc);
+\draw [uses] (l2arc) -> (zio);
+\draw [uses] (zio) -> (vdev);
+\draw [uses] (vdev) -> (drv);
+
+\draw [uses] (dsl) -> (dmu);
+\draw [uses] (dsl) -> (zap);
+
+\draw [uses] (zvol) -> (dmu);
+\draw [uses] (zvol) -> (zil);
+\draw [uses] (devzvol) -> (zvol);
+
+\draw [uses] (zfsutils) -> (devzfs);
+\draw [uses] (devzfs) -> (dsl); 
+
+\end{pgfonlayer}
+
+\begin{pgfonlayer}{zfs_layers}
+\node [zfslayerdescription, align=left, anchor=west] at (-6, 1.5) (spl) { \color{gray} SPA \\ \color{gray} Storage Pool};
+\node [zfslayer, fit= (zio) (vdev) (spl)] (splbox) {};
+
+\node [zfslayerdescription, align=left, anchor=west] at (-6, 4) (layertransactions) { \color{gray} Transactions \\ \color{gray} Consistency};
+\node [zfslayer, fit=(layertransactions) (dmu) (zil)] {};
+
+\node [zfslayerdescription,align=center,anchor=north] at ([yshift=-20pt]dsl) (management) {\color{gray} Management};
+\node [zfslayer, fit= (dsl) (devzfs) (zfsutils) (management)] {};
+
+\draw  [zfslayer] (-6, 6.5) -- (6.5, 6.5);
+\draw  [zfslayer] (-6, 0.4) -- (6.5, 0.4);
+\end{pgfonlayer}
+
+\end{tikzpicture}

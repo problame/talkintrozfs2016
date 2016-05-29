@@ -1,0 +1,15 @@
+% An alternative to this picture is Figure 3 in the original ZFS paper
+% from 2003.
+% A copy is availble at http://www.mckusick.com/bookrefs/zfs_overview.pdf
+% The copyright of this paper is unknown.
+
+\input{assets/layers/layer_styles.tikz}
+\begin{tikzpicture}
+\node (drv) [layer] {Device Driver};
+\node (lba) [interface] at ([yshift=+2em]drv) {\small LBA: \texttt{<device, offset>}};
+\node (volman) [layer] at ([yshift=+2em]lba){Volume Manager};
+\node (lbatwo) [interface] at ([yshift=+2em]volman){\footnotesize \texttt{<(virtual) device, offset>}};
+\node (fs) [layer] at ([yshift=+2em]lbatwo) {File System};
+\node (vnodeif)[interface] at ([yshift=+2em]fs){\texttt{vnode} interface};
+\node (syscall) [layer] at ([yshift=+2em]vnodeif) {\texttt{read/write}(3)};
+\end{tikzpicture}

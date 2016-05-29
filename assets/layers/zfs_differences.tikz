@@ -1,0 +1,17 @@
+% I found no easy way to use Beamer overlays for the highlighting, so this
+% graphic is a fork from zfs.tikz.
+
+\input{assets/layers/layer_styles.tikz}
+\begin{tikzpicture}[
+highlighted/.style={fill=carnelian!60}
+]
+\node (drv) [layer] {Device Driver};
+\node (lba) [interface] at ([yshift=+2em]drv) {\small LBA: \texttt{<device, offset>}};
+\node (spa) [layer] at ([yshift=+2em]lba){Storage Pool Allocator (SPA)};
+\node (dva) [interface, highlighted] at ([yshift=+2em]spa){Data Virtual Address};
+\node (dmu) [layer] at ([yshift=+2em]dva){Data Management Unit (DMU)};
+\node (dmuobj)[interface, highlighted] at ([yshift=+2em]dmu) {\small <dataset, object, offset>};
+\node (zpl) [layer] at ([yshift=+2em]dmuobj) {ZFS POSIX Layer (ZPL)};
+\node (vnodeif)[interface] at ([yshift=+2em]zpl){\texttt{vnode} interface};
+\node (syscall) [layer] at ([yshift=+2em]vnodeif) {\texttt{read/write}(3)};
+\end{tikzpicture}

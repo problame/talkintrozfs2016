@@ -1,0 +1,41 @@
+\begin{frame}{}
+\begin{center}
+	\Huge ZFS
+\end{center} 
+\end{frame}
+
+\begin{frame}{ZFS Design Goals}
+	\begin{itemize}
+		\item Simple Administration
+		\item Pooled Storage
+		\item Always Consistent On-Disk State
+		\item Error Detection And Correction
+	\end{itemize}	
+\end{frame}
+
+\begin{frame}[allowframebreaks]{ZFS Features}
+	%\note{Many ZFS Features are a byproduct of the implementation chosen to achieve the aforementioned design goals}
+	\begin{itemize}[]
+		\item No \texttt{fsck}. Ever.
+		\item Simple Interface
+		\begin{itemize}
+			\item Inheritance Model
+			\item Delegate Datasets to Unprivileged Users
+			\item Delegate Datasets to Zones / Jails
+		\end{itemize}
+		\item Disk-level redundancy
+		\item Data-integrity
+		\item Dynamically allocated POSIX file systems
+		\item Quotas \& Reservations %\note{Storage management}
+		\framebreak
+		\item ZVOLs - ZFS-backed block devices %\note{iSSCI}
+		\item Cheap, Consistent Copy-on-Write Snapshots \& Clones
+		\item Fast Replication \& Backups
+		\item Per-Dataset configurable Compression \& Deduplication
+		\item Hybrid Storage Model
+		\item Variable Block-Size
+		\framebreak
+		\item ...
+	\end{itemize}
+\end{frame}
+

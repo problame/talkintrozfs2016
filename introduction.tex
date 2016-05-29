@@ -1,0 +1,98 @@
+\begin{frame}{Introduction}
+	Storing data on disk
+	\pause
+	\begin{itemize}
+		\item spinning rust \pause (faulty) \pause
+		\item phantom writes \pause
+		\item bit rot \pause (\unicodefont{�}) \pause 
+		\item flaky power \pause (fsck-y) \pause
+		\item firmware bugs (happen) \pause
+		
+		\item volume management \pause (ugly) \pause
+		\item partitioning \pause (inflexible)
+		\item ... \pause
+	\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Example: SoftRAID + LVM + mkfs.ext4}
+\begin{minted}{sh}
+# create softraid / soft-mirror
+mdadm -C /dev/md0 --name md0 \
+    --level=mirror -n2 /dev/sda1 /dev/sdb1
+# init LVM physical volumes
+pvcreate /dev/md0
+# create LVM logical volume group
+vgcreate vg0 /dev/md0
+# create LVM logical volume
+lvcreate -L 100G vg0 -n root
+# create file system on logical volume
+mkfs.ext4 /dev/mapper/vg0-root
+\end{minted}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Example: Softraid + LVM + mkfs.ext4}
+	\begin{columns}
+		\begin{column}{0.25\linewidth}
+			
+		\end{column}
+		\begin{column}{0.5\linewidth}
+			\begin{figure}
+				\includegraphics[]{assets/layers/traditional}
+				%\caption{Traditional File System Stack. Source: \cite{zfs2003} }
+			\end{figure}			
+		\end{column}
+		\begin{column}{0.25\linewidth}
+			
+		\end{column}
+	\end{columns}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Example: Softraid + LVM + mkfs.ext4}
+	\begin{center}
+	\Huge
+	We can do better.
+	\end{center}
+\end{frame}
+
+\begin{frame}{Example: ZFS}
+	\begin{center}
+		\Huge ZFS
+	\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Example: ZFS} 
+\begin{minted}{sh}
+# create storage pool
+# implicitly creating root filesystem
+zpool create tank mirror /dev/sda1 /dev/sdb1
+\end{minted}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Example: ZFS} 
+\begin{minted}{sh}
+zpool status tank
+
+  pool: tank
+  state: ONLINE
+  scan: none requested
+  config:
+  
+  NAME            STATE     READ WRITE CKSUM
+  tank            ONLINE       0     0     0
+    mirror-0      ONLINE       0     0     0
+      /dev/sda1   ONLINE       0     0     0
+      /dev/sdb1   ONLINE       0     0     0
+\end{minted}
+\end{frame}

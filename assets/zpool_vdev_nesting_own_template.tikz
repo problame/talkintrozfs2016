@@ -1,0 +1,38 @@
+\begin{tikzpicture}[
+disk/.style={
+	circle,
+	draw
+},
+vdev/.style={
+	rectangle,
+	draw	
+},
+level 1/.style={
+	sibling distance=60pt
+},
+level 2/.style={
+	sibling distance=50pt
+}
+]
+\node [vdev] {mirror} [edge from parent fork down]
+	child {
+		node[vdev]{disk} child {
+			node[disk]{\tiny 100GB}
+		}
+	}
+	child {
+		node[vdev]{stripe}
+		child {
+			node[vdev]{disk} 
+			child {
+				node[disk]{\tiny 50GB}
+			}
+		}
+		child {
+			node[vdev]{disk}
+			child {
+				node[disk]{\tiny 50GB}
+			}
+		}
+	};
+\end{tikzpicture}

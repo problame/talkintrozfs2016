@@ -1,0 +1,5 @@
+\tikzset{
+every node/.style={draw=gray},
+layer/.style={fill=lightgray, minimum height=2em, minimum width=0.9\linewidth},
+interface/.style={fill=white, minimum height=1.5em, minimum width=0.75\linewidth}
+}

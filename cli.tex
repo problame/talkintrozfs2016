@@ -1,0 +1,33 @@
+
+\begin{frame}{ZFS in Action}
+	\begin{itemize}
+		\item Create Disks 0 5
+		\item Create mirrored stripes
+		\item zpool status
+		\item Create spare zpool add spare
+		\item Create text file
+		\item Watch zpool 
+		\item Corrupt one disk's data (dd if=/dev/random of=/tmp/diski bs=1k seek=256 count=100k)
+		\item Scrub
+		\item Watch Zpool report checksumming corrections
+		\item watch zpool status tank
+		\item Shred a disk (where uberblocks are kept) (dd if=/dev/urandom of=/tmp/diski bs=1M count=100 )
+		\item scrub
+		\item Do zpool replace (watch zpool status)
+		\item watch zpool status change
+		\item watch zfs list
+		\item zfs create
+		\item zfs create -o compression=on
+		\item create compressible file, dd if=/dev/zero of=/mountpoint/zeroes bs=1M count=300M
+		\item zfs snapshot ds@snap1
+		\item zfs list -t snapshot ds
+		\item delete /mountpoint/zeroes
+		\item zfs diff ds@snap1 ds
+		\item talk about backup solutions
+		\item zpool create backups mirror /tmp/disk4 /tmp/disk5
+		\item zfs snapshot -v -r ds@initial\_backup
+		\item zfs send -R ds@initial\_backup | zfs receive backups
+		\item zfs list -t snapshot backups
+		\item mention that pipe could traverse networks, e.g. with SSH
+	\end{itemize}
+\end{frame}
