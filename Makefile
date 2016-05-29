@@ -11,9 +11,11 @@ talk.pdf: pdfassets | talk.tex.firstlatexrun.aux talk.bbl talk.tex.secondrun.aux
 
 talk.tex.firstlatexrun.aux:
 	$(LATEX) talk
+	-touch talk.tex.firstlatexrun.aux
 
 talk.tex.secondrun.aux:
 	$(LATEX) talk
+	-touch talk.tex.secondrun.aux
 
 talk.bbl: bibliography.bib
 	$(BIBTEX) talk
@@ -27,7 +29,7 @@ clean:
 	done
 # SVG to PDF
 
-svgs := $(wildcard assets/*.svg) $(wildcard assets/on_disk/*.svg) $(wildcard assets/on_disk/cow/*.svg)
+svgs := $(shell find assets -name '*.svg')
 
 pdfassets: $(svgs:%.svg=%.pdf)
 %.pdf : %.svg
