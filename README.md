@@ -10,6 +10,14 @@ Requirements / the author's LaTeX setup:
 * TexLive (LaTeX distro)
 * minted (Syntax highligted verbatims)
 	* python pygments
+* Inkscape (svg conversion)
+* GNU make
+
+## Command
+
+```bash
+make
+```
 
 # Licensing
 
