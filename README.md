@@ -10,6 +10,12 @@ Requirements / the author's LaTeX setup:
 * TexLive (LaTeX distro)
 * minted (Syntax highligted verbatims)
 	* python pygments
+* Inkscape (svg conversion)
+* GNU make
+
+Run ```make``` and open `talk.pdf`.
+
+Alternatively, use one of a pre-rendered version in the 'release'-section of this project.
 
 # Licensing
 
