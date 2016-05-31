@@ -32,5 +32,5 @@ This work is licensed under the Creative Commons Attribution 4.0 International L
 
 ### Attribution
 
-* **URL**: https://cschwarz.com/permalink/talks/introzfs2016
+* **URL**: https://perma.cschwarz.com/talks/introzfs2016
 * **Name**: Christian Schwarz
