@@ -3,6 +3,30 @@
 A talk orginally given at [GPN16, 26-29 May 2016](https://entropia.de/GPN16).
 The [original recording can watched here](https://app.media.ccc.de/v/gpn16-7633-an_introduction_to_zfs).
 
+## Contents
+
+* Anecdotal introduction
+* ZFS feature listing
+* Overview traditional filesystem layering and inode on-disk format
+* Analogous ZFS layers
+* ZFS Key Implementation Techniques
+	* Block Pointer
+	* Tree Structures
+	* Checksumming
+	* Copy-on-Write
+* ZFS Module Walkthrough
+	* VDEVs
+	* SPA
+	* DMU
+	* DSL
+	* ARC \& L2ARC
+	* ZPL
+	* ZAP
+	* ZIL
+	* ZVOL
+	* /dev/zfs
+* (no slides) Demo of ZFS features (check `cli.tex` for hints on what to show. Improvements needed.
+
 # Compiling
 
 Requirements / the author's LaTeX setup:
